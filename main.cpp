@@ -1,4 +1,5 @@
 
+
 #include <stdio.h>
 
 #define INPUT_LENGTH 4
@@ -29,6 +30,32 @@ void perMute(char *output, int pos)
     }
 }
 
+void swap(int i, int curPos)
+{
+    char tmp = inputChar[i];
+    inputChar[i] = inputChar[curPos];
+    inputChar[curPos] = tmp;
+}
+
+
+void permuteWithOutRep(char *output, int pos, int curPos)
+{
+    if (pos == OUTPUT_LENGTH)
+    {
+        output[pos] = '\0';
+        printOutPut(output);
+        return;
+    }
+
+    int i;
+    for (i = curPos; i < INPUT_LENGTH; i++)
+    {
+        swap(i, curPos);
+        output[pos] = inputChar[curPos];
+        permuteWithOutRep(output, pos + 1, curPos + 1);
+        swap(i, curPos);
+    }
+}
 
 int main()
 {
