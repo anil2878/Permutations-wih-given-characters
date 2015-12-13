@@ -38,7 +38,7 @@ void swap(int i, int curPos)
 }
 
 
-void permuteWithOutRep(char *output, int pos, int curPos)
+void permuteWithOutRep(char *output, int pos)
 {
     if (pos == OUTPUT_LENGTH)
     {
@@ -48,12 +48,12 @@ void permuteWithOutRep(char *output, int pos, int curPos)
     }
 
     int i;
-    for (i = curPos; i < INPUT_LENGTH; i++)
+    for (i = pos; i < INPUT_LENGTH; i++)
     {
-        swap(i, curPos);
-        output[pos] = inputChar[curPos];
-        permuteWithOutRep(output, pos + 1, curPos + 1);
-        swap(i, curPos);
+        swap(i, pos);
+        output[pos] = inputChar[pos];
+        permuteWithOutRep(output, pos + 1);
+        swap(i, pos);
     }
 }
 
